@@ -33,24 +33,33 @@ let form = document.querySelector('form');
 let optionResult = document.createElement('span');
 let optionResult1 = document.querySelector(".option-result");
 let optionResult2 = document.createElement('span');
-let cryptoCode = document.querySelector("#cryptoCode");
+let cryptoCodeBefore = document.querySelector("#cryptoCodeBefore");
+let cryptoCodeAfter = document.querySelector("#cryptoCodeAfter");
 let date = document.querySelector("#date");
 let date2 = document.querySelector('#dateInput');
 let rateResults = document.querySelector("#displayResults");
 let result = document.querySelector("#option");
+let cryptoCodeBeforeInput = document.querySelector("#cryptoCodeBeforeInput");
+let cryptoCodeAfterInput = document.querySelector("#cryptoCodeAfterInput");
+let amount = document.querySelector("#amount");
+let amountInput = document.querySelector("#amountInput");
+let clear = document.querySelector("#clear");
 
 optionResult2.innerText = "Explanation: "
 
 function hideOptions(){
-    cryptoCode.style.display = "none";
+    cryptoCodeBefore.style.display = "none";
+    cryptoCodeAfter.style.display = "none";
     date.style.display = "none";
+    amount.style.display = "none";
 }
 
 window.onload = hideOptions;
 
+//Function for returning explanations of what you will be looking for
 function myFunction(){
     if (result.value == 'liveCurrency'){
-        optionResult.innerText = "Get the latest crypto rates for all available or a specific set of cryptocurrencies."
+        optionResult.innerText = "Get the latest crypto rates for all available cryptocurrencies."
 
         optionResult1.appendChild(optionResult2);
         optionResult1.appendChild(optionResult);
@@ -74,24 +83,53 @@ function myFunction(){
 
         optionResult1.appendChild(optionResult2);
         optionResult1.appendChild(optionResult);
-    } else if(result.value == "Choose Option") {
+    } else if (result.value == "Choose Option"){
         optionResult.innerText = "";
         optionResult2.style.display = "none";
         date.style.display = "none";
+        amount.style.display = "none";
     }
 }
 
 result.addEventListener('click', addOptions);
 form.addEventListener('submit', displayResults);
+/*clear.addEventListener('click', clearResults);
 
-//Adding and Hiding options needed for each option
+function clearResults(){
+    rateResults.style.display = "none";
+}*/
+
+//Adding and Hiding inputs needed for each option
 function addOptions() {
+    while (rateResults.firstChild) {
+        rateResults.removeChild(rateResults.firstChild);
+      }
+
     if (result.value == "liveCurrency") {
-        cryptoCode.style.display = "none";
+        cryptoCodeBefore.style.display = "none";
+        cryptoCodeAfter.style.display = "none";
         date.style.display = "none";
+        amount.style.display = "none";
     } else if (result.value == "historicalData") {
-        cryptoCode.style.display = "none";
+        cryptoCodeBefore.style.display = "none";
+        cryptoCodeAfter.style.display = "none";
         date.style.display = "inline";
+        amount.style.display = "none";
+    } else if (result.value == "conversion"){
+        cryptoCodeBefore.style.display = "inline";
+        cryptoCodeAfter.style.display = "inline";
+        date.style.display = "none";
+        amount.style.display = "inline";
+    } else if (result.value == "timeFrame"){
+        cryptoCodeBefore.style.display = "none";
+        cryptoCodeAfter.style.display = "none";
+        date.style.display = "none";
+        amount.style.display = "none";
+    } else if (result.value == "changeData"){
+        cryptoCodeBefore.style.display = "none";
+        cryptoCodeAfter.style.display = "none";
+        date.style.display = "none";
+        amount.style.display = "none";
     }
 }
 
@@ -106,6 +144,17 @@ function displayResults(e) {
         fetch(`${baseURL}${date2.value}?access_key=${key}`)
             .then(res => res.json())
             .then(json => displayResultsHistoricalData(json))
+    } else if (result.value == "conversion") {
+        /*
+        fetch(`${baseURL}/convert?access_key=${key}&from=${cryptoCodeBeforeInput.value.toUpperCase()}&to=${cryptoCodeAfterInput.value.toUpperCase()}&amount=${amount.value}`)
+            .then(res => res.json())
+            .then(json => conversion(json))
+        */
+        alert("Unsupported Function At This Time");
+    } else if (result.value == "timeFrame"){
+        alert("Unsupported Function At This Time");
+    } else if (result.value == "changeData"){
+        alert("Unsupported Function At This Time");
     }
 }
 
@@ -140,4 +189,18 @@ function displayResultsHistoricalData(json){
             rates.innerHTML = `${currency} ${results[currency]}`;
         } 
     }
+}
+
+function conversion(json){
+    while (rateResults.firstChild) {
+        rateResults.removeChild(rateResults.firstChild);
+      }
+    
+    const results = json.result;
+
+    let rates = document.createElement("p");
+    rateResults.appendChild(rates);
+    rates.innerHTML = results;
+    console.log(json.result);
+
 }

@@ -9,15 +9,9 @@
     <title></title>
 </head>
 <body>
-    <!--
-    bootstrap
-    API key
-    push to github
-    --> 
-
-    <h1 class="container">Cryptocurrency Information</h1>
+    <h1 class="container" id="header">Cryptocurrency Information</h1>
     <div class="container">
-        Choose an option below. (Choose the option to see explanation).
+        <label>Choose an option below. (Choose the option to see explanation).</label>
     </div>
    
     <form class="container">
@@ -33,24 +27,40 @@
       <section class="option-result">
 
       </section>
-      <br>
-      <!--Crypto currency input-->
-      <div class="mb-3 .container-md" id="cryptoCode">
-        <label for="exampleFormControlInput1" class="form-label">Crypto Code</label>
-        <input type="text" class="form-control" id="cryptoCodeInput" placeholder="Enter crypto code here" maxlength="3">
+
+      <!--Crypto currency before input area-->
+      <div class="mb-3 .container-md" id="cryptoCodeBefore">
+        <label for="cryptoCodeBeforeInput" class="form-label">Crypto Code Before</label>
+        <input type="text" class="form-control" id="cryptoCodeBeforeInput" placeholder="Enter Crypto Code From Conversion Here" maxlength="3">
       </div>
-      <!--Date Area-->
+
+      <!--Crypto currency after input area-->
+      <div class="mb-3 .container-md" id="cryptoCodeAfter">
+        <label for="cryptoCodeAfterInput" class="form-label">Crypto Code After</label>
+        <input type="text" class="form-control" id="cryptoCodeAfterInput" placeholder="Enter Crypto Code To Conversion Here" maxlength="3">
+      </div>
+
+      <!--Amount Input Area-->
+      <div class="mb-3 .container-md" id="amount">
+        <label for="amountInput" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="amountInput" placeholder="Enter Amount Here">
+      </div>
+
+      <!--Date Input Area-->
       <div class="mb-3 .container-md" id="date">
-        <label for="exampleFormControlInput1" class="form-label">Date</label>
+        <label for="dateInput" class="form-label">Date</label>
         <input type="date" class="form-control" id="dateInput">
       </div>
+
+      
 <!--
       <div class="mb-3 .container-md">
         <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
 -->
-      <input class="btn btn-primary" type="submit" value="Submit">
+      <input class="btn btn-primary" type="submit" value="Submit" id="submit">
+      <input class="btn btn-primary" type="submit" value="Clear" id="clear">
     </form>
 
     <section class="container" id="displayResults">
