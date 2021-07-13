@@ -93,11 +93,13 @@ function myFunction(){
 
 result.addEventListener('click', addOptions);
 form.addEventListener('submit', displayResults);
-/*clear.addEventListener('click', clearResults);
+clear.addEventListener('click', clearResults);
 
 function clearResults(){
-    rateResults.style.display = "none";
-}*/
+    while (rateResults.firstChild) {
+        rateResults.removeChild(rateResults.firstChild);
+    }
+}
 
 //Adding and Hiding inputs needed for each option
 function addOptions() {

@@ -3,18 +3,12 @@
 }
 
 body {
-    /*
-    background: url("./elements/crypto.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    */
     color: black;
 }
 
 #header {
     color: gold;
+    text-align: center;
 }
 
 #submit {
@@ -32,3 +26,5 @@ body {
 label {
     font-size: 20px;
 }
+
+
