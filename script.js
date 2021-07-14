@@ -44,6 +44,8 @@ let cryptoCodeAfterInput = document.querySelector("#cryptoCodeAfterInput");
 let amount = document.querySelector("#amount");
 let amountInput = document.querySelector("#amountInput");
 let clear = document.querySelector("#clear");
+let cryptoCode = document.querySelector("#cryptoCode");
+let cryptoCodeInput = document.querySelector("#cryptoCodeInput");
 
 optionResult2.innerText = "Explanation: "
 
@@ -52,6 +54,7 @@ function hideOptions(){
     cryptoCodeAfter.style.display = "none";
     date.style.display = "none";
     amount.style.display = "none";
+    cryptoCode.style.display = "none";
 }
 
 window.onload = hideOptions;
@@ -63,7 +66,13 @@ function myFunction(){
 
         optionResult1.appendChild(optionResult2);
         optionResult1.appendChild(optionResult);
-    } else if (result.value == 'historicalData'){
+    } else if (result.value == 'liveCurrencyCode'){
+        optionResult.innerText = "Get the latest crypto rate for specified cryptocurrency."
+    
+        optionResult1.appendChild(optionResult2);
+        optionResult1.appendChild(optionResult);
+    }
+    else if (result.value == 'historicalData'){
         optionResult.innerText = "Get a query of historical crypto data all the way back to the year 2011."
 
         optionResult1.appendChild(optionResult2);
@@ -88,6 +97,9 @@ function myFunction(){
         optionResult2.style.display = "none";
         date.style.display = "none";
         amount.style.display = "none";
+        cryptoCodeAfter.style.display = "none";
+        cryptoCodeBefore.style.display = "none";
+        cryptoCode.style.display = "none";
     }
 }
 
@@ -99,6 +111,14 @@ function clearResults(){
     while (rateResults.firstChild) {
         rateResults.removeChild(rateResults.firstChild);
     }
+
+    optionResult.innerText = "";
+    optionResult2.style.display = "none";
+    date.style.display = "none";
+    amount.style.display = "none";
+    cryptoCodeAfter.style.display = "none";
+    cryptoCodeBefore.style.display = "none";
+    cryptoCode.style.display = "none";
 }
 
 //Adding and Hiding inputs needed for each option
@@ -108,26 +128,37 @@ function addOptions() {
       }
 
     if (result.value == "liveCurrency") {
+        cryptoCode.style.display = "none";
+        cryptoCodeBefore.style.display = "none";
+        cryptoCodeAfter.style.display = "none";
+        date.style.display = "none";
+        amount.style.display = "none";
+    } else if (result.value == "liveCurrencyCode"){
+        cryptoCode.style.display = "inline";
         cryptoCodeBefore.style.display = "none";
         cryptoCodeAfter.style.display = "none";
         date.style.display = "none";
         amount.style.display = "none";
     } else if (result.value == "historicalData") {
+        cryptoCode.style.display = "none";
         cryptoCodeBefore.style.display = "none";
         cryptoCodeAfter.style.display = "none";
         date.style.display = "inline";
         amount.style.display = "none";
     } else if (result.value == "conversion"){
+        cryptoCode.style.display = "none";
         cryptoCodeBefore.style.display = "inline";
         cryptoCodeAfter.style.display = "inline";
         date.style.display = "none";
         amount.style.display = "inline";
     } else if (result.value == "timeFrame"){
+        cryptoCode.style.display = "none";
         cryptoCodeBefore.style.display = "none";
         cryptoCodeAfter.style.display = "none";
         date.style.display = "none";
         amount.style.display = "none";
     } else if (result.value == "changeData"){
+        cryptoCode.style.display = "none";
         cryptoCodeBefore.style.display = "none";
         cryptoCodeAfter.style.display = "none";
         date.style.display = "none";
@@ -142,6 +173,10 @@ function displayResults(e) {
         fetch(`${baseURL}live?access_key=${key}`)
             .then(res => res.json())
             .then(json => displayResultsLiveCurrency(json));
+    } else if (result.value == "liveCurrencyCode"){
+        fetch(`${baseURL}live?access_key=${key}`)
+            .then(res => res.json())
+            .then(json => displayResultsLiveCurrencyCode(json))
     } else if (result.value == "historicalData"){
         fetch(`${baseURL}${date2.value}?access_key=${key}`)
             .then(res => res.json())
@@ -177,6 +212,22 @@ function displayResultsLiveCurrency(json){
     }
 }
 
+function displayResultsLiveCurrencyCode(json) {
+    while (rateResults.firstChild) {
+        rateResults.removeChild(rateResults.firstChild);
+      }
+
+      const results = json.rates;
+
+      for (const currency in results){
+        if(results.hasOwnProperty(currency) && cryptoCodeInput.value.toUpperCase() == currency){
+            let rates = document.createElement("p");
+            rateResults.appendChild(rates);
+            rates.innerHTML = `${currency} ${results[currency]}`;
+        }
+    }
+}
+
 function displayResultsHistoricalData(json){
     while (rateResults.firstChild) {
         rateResults.removeChild(rateResults.firstChild);
@@ -203,6 +254,12 @@ function conversion(json){
     let rates = document.createElement("p");
     rateResults.appendChild(rates);
     rates.innerHTML = results;
-    console.log(json.result);
-
+    
 }
+
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})

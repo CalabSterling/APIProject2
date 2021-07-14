@@ -1,30 +1,59 @@
+@font-face {
+    font-family: 'kredit';
+    src: url(./elements/kredit.ttf);
+}
+
 .option-result {
-    color: green;
+    color: darkblue;
 }
 
 body {
-    color: black;
+    color: rgb(161, 137, 1);
+    margin: auto;
+    padding: auto;
 }
 
 #header {
-    color: gold;
+    color:rgb(161, 137, 1);
     text-align: center;
+    padding: 20px;
+    font-family: "Kredit";
 }
 
 #submit {
-    background-color: gold;
-    color: black;
+    background-color: darkblue;
+    color: white;
     border: none;
+    font-family: "Kredit";
 }
 
 #clear {
     background-color: silver;
     color: black;
     border: none;
+    font-family: "Kredit";
 }
 
 label {
     font-size: 20px;
 }
 
+#displayResults {
+    text-align: center;
+}
 
+#bankCard {
+    background-color: gold;
+    margin: auto;
+    padding: 10vw;
+    border-radius: 15px;
+    width: 60vw;
+}
+
+@media only screen and (max-width: 600px){
+    #bankCard {
+        width: 100vw;
+        margin: auto;
+        padding: auto;
+    }
+}
