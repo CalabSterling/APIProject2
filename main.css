@@ -1,3 +1,25 @@
+@media (min-width: 576px) {
+    :root {
+      --size-divisor: 2;
+    }
+  }
+  @media (min-width: 768px) {
+    :root {
+      --size-divisor: 1.5;
+    }
+  }
+  @media (min-width: 992px) { 
+    :root {
+      --size-divisor: 1;
+    }
+  }
+  @media (min-width: 1200px) { 
+    :root {
+      --size-divisor: .67;
+    }
+  }
+
+
 @font-face {
     font-family: 'kredit';
     src: url(./elements/kredit.ttf);
@@ -45,9 +67,19 @@ label {
 #bankCard {
     background-color: gold;
     margin: auto;
-    padding: 10vw;
+    padding: 10vw 10vw 0vw 10vw;
     border-radius: 15px;
     width: 60vw;
+    box-shadow: gray 10px 10px 10px;
+}
+
+.cardChip {
+    background-color: silver;
+    width: calc(80px / var(--size-divisor));
+    height: calc(55px / var(--size-divisor));
+    border-radius: 8px;
+    position: relative;
+    margin: calc(-60px / var(--size-divisor)) 0 0 calc(600px / var(--size-divisor));
 }
 
 @media only screen and (max-width: 600px){
@@ -56,4 +88,11 @@ label {
         margin: auto;
         padding: auto;
     }
+}
+
+.name {
+    font-family: "Kredit";
+    font-size: calc(5vh / var(--size-divisor));
+    padding: 0;
+    margin: calc(15vh / var(--size-divisor)) 0px 0px calc(10vw / var(--size-divisor));
 }
