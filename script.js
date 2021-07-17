@@ -26,7 +26,7 @@ baseURL/change
 & end_date = YYYY-MM-DD
 & symbols = BTC,ETH,XRP
 */
-const baseURL = 'http://api.coinlayer.com/api/';
+const baseURL = 'https://api.coinlayer.com/api/';
 const key = 'aedb8261b972fc516f56085ba129e2ae';
 
 let form = document.querySelector('form');
