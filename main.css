@@ -73,15 +73,6 @@ label {
     box-shadow: gray 10px 10px 10px;
 }
 
-.cardChip {
-    background-color: silver;
-    width: calc(80px / var(--size-divisor));
-    height: calc(55px / var(--size-divisor));
-    border-radius: 8px;
-    position: relative;
-    margin: calc(-60px / var(--size-divisor)) 0 0 calc(600px / var(--size-divisor));
-}
-
 @media only screen and (max-width: 600px){
     #bankCard {
         width: 100vw;
