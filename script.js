@@ -26,7 +26,7 @@ baseURL/change
 & end_date = YYYY-MM-DD
 & symbols = BTC,ETH,XRP
 */
-const baseURL = 'https://api.coinlayer.com/api/';
+const baseURL = 'http://api.coinlayer.com/api/';
 const key = 'aedb8261b972fc516f56085ba129e2ae';
 
 let form = document.querySelector('form');
@@ -254,12 +254,4 @@ function conversion(json){
     let rates = document.createElement("p");
     rateResults.appendChild(rates);
     rates.innerHTML = results;
-    
 }
-
-var myModal = document.getElementById('myModal')
-var myInput = document.getElementById('myInput')
-
-myModal.addEventListener('shown.bs.modal', function () {
-  myInput.focus()
-})
